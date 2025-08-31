@@ -14,7 +14,7 @@ const clearCartBtn = document.getElementById("clear-cart-btn");
 
 // --- Helper functions for sessionStorage ---
 function getCart() {
-  let cart = sessionStorage.getItem("cart");
+  const cart = sessionStorage.getItem("cart");
   return cart ? JSON.parse(cart) : [];
 }
 
@@ -60,7 +60,7 @@ function addToCart(productId) {
   const product = products.find((p) => p.id === productId);
 
   if (product) {
-    cart.push(product); // allow duplicates for now
+    cart.push(product); // allow duplicates
     saveCart(cart);
     renderCart();
   }
@@ -73,6 +73,7 @@ function clearCart() {
 }
 
 // --- Initial render ---
+// ⚠️ Important: don't reset sessionStorage here
 renderProducts();
 renderCart();
 
